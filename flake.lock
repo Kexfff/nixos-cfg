@@ -1,0 +1,177 @@
+{
+  "nodes": {
+    "dotfiles": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767904740,
+        "narHash": "sha256-7D1O6KBJcIlGdY4vauUZ3ANXcQ7vbt9/vmk3ThkuA1o=",
+        "ref": "refs/heads/main",
+        "rev": "b41d5a5d21a4f33aebaab9862c3317094ee5fd21",
+        "revCount": 5812,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/Kexfff/dots-hyprland"
+      },
+      "original": {
+        "rev": "b41d5a5d21a4f33aebaab9862c3317094ee5fd21",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/Kexfff/dots-hyprland"
+      }
+    },
+    "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "illogical-flake",
+          "nur",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1733312601,
+        "narHash": "sha256-4pDvzqnegAfRkPwO3wmwBhVi/Sye1mzps0zHWYnP88c=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "205b12d8b7cd4802fbcb8e8ef6a0f1408781a4f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767878997,
+        "narHash": "sha256-pOWcb+hKeRM40eo6+aqTVcGPS1pCPoMOJHvP3So7VBM=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "d1da1de5c27bcedfbf8d8f260b63b51ee5442550",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "illogical-flake": {
+      "inputs": {
+        "dotfiles": "dotfiles",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nur": "nur",
+        "quickshell": "quickshell"
+      },
+      "locked": {
+        "lastModified": 1767905302,
+        "narHash": "sha256-zYTeYMNZwlBj7ijBLN7SxzANqyWgSXoBm2jXFqTlyyg=",
+        "owner": "Kexfff",
+        "repo": "illogical-flake",
+        "rev": "9288e05d40a60a94463d08e7bb8b51ed696af415",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Kexfff",
+        "repo": "illogical-flake",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1767767207,
+        "narHash": "sha256-Mj3d3PfwltLmukFal5i3fFt27L6NiKXdBezC1EBuZs4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5912c1772a44e31bf1c63c0390b90501e5026886",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nur": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "nixpkgs": [
+          "illogical-flake",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767900909,
+        "narHash": "sha256-XRG6j3BU3gDFkExhKDKpuKo1jjDci0p130iwLtDEFU0=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "9f5d17c948d412cdd5fc4eaafdea6bebb49e9937",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
+      }
+    },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "illogical-flake",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767874269,
+        "narHash": "sha256-++tlVUxW8nq0uqbcU1h7X0QQnOehY3/EWUCOr1kbVvM=",
+        "ref": "refs/heads/master",
+        "rev": "5d8354a88be2ce2c16add7457c94e29f6e7c3684",
+        "revCount": 719,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      }
+    },
+    "root": {
+      "inputs": {
+        "home-manager": "home-manager",
+        "illogical-flake": "illogical-flake",
+        "nixpkgs": "nixpkgs",
+        "thorium-flake": "thorium-flake"
+      }
+    },
+    "thorium-flake": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767903950,
+        "narHash": "sha256-/zxmLm7RvQr8k00rCNiu/jbJJ8NoaPD1eXM5wJUi0OQ=",
+        "owner": "Kexfff",
+        "repo": "thorium-flake",
+        "rev": "d4a73092fbacf6f25ddd511d500d5e973bfce5c8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Kexfff",
+        "repo": "thorium-flake",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
