@@ -12,12 +12,9 @@
 
 
 
-
+    # Text Editors // IDEs
     zed-editor-fhs
     vscodium-fhs
-    vscode-fhs
-    jetbrains.idea-oss
-    jetbrains.pycharm-oss
 
     # Development Tools--------------------
     gh
@@ -30,7 +27,7 @@
     nodePackages.pnpm
     rustup
     go
-    docker-compose
+    #docker-compose
 
     # System Utilities---------------------
     btop

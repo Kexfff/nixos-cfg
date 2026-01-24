@@ -19,12 +19,14 @@
 
 
    environment.systemPackages = [
-    inputs.thorium-flake.packages.${pkgs.system}.default
+    inputs.thorium-flake.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.download-buffer-size = 524288000;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.auto-optimise-store = true;
+  nix.settings.trusted-users = [ "root" "kexfff" ];
   nix.gc.automatic = true;
   nix.gc.dates = "daily";
   nix.gc.options = "--delete-older-than 3d";
@@ -32,14 +34,10 @@
 
 
 
-
-  # Enable Hyprland
-  programs.hyprland.enable = true;
-
   # Required services
   services.geoclue2.enable = true;  # For QtPositioning
-
-  # System fonts (optional but recommended)
+  programs.niri.enable = true;
+  # System fonts
   fonts.packages = with pkgs; [
     rubik
     nerd-fonts.ubuntu
@@ -49,11 +47,12 @@
 
 
 
-  # Define a user account.
+  # User account
   users.users.kexfff = {
     isNormalUser = true;
     description = "Aleksei";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
       kdePackages.kate
       kdePackages.yakuake
@@ -63,7 +62,8 @@
     ];
   };
 
-  # This value determines the NixOS release from which the default
-  system.stateVersion = "25.05"; # Did you read the comment?
+  programs.zsh.enable = true;
+
+  system.stateVersion = "25.05";
 
 }
