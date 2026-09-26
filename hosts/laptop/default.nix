@@ -16,7 +16,7 @@
       defaultLocale = "en_US.UTF-8";
       keyboard.layout = "us,ru";
     };
-    nix.flakePath = "/nixos-cfg";
+    nix.flakePath = "/home/kexfff/nixos-cfg";
 
     # ── Hardware ──────────────────────────────────────────────────────
     hardware = {
@@ -63,8 +63,13 @@
       languages = [
         "python"
         "node"
+        "rust"
+        "go"
       ];
-      editors = [ "vscode" ];
+      editors = [
+        "vscode"
+        "zed"
+      ];
     };
 
     virtualisation = {

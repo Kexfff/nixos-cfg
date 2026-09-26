@@ -47,6 +47,7 @@ in
 
   programs.zed-editor = lib.mkIf (want "zed") {
     enable = true;
+    package = pkgs.zed-editor-fhs;
     extensions = [
       "nix"
       "toml"
