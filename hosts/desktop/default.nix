@@ -48,6 +48,7 @@
 
     # ── Desktop & workloads ───────────────────────────────────────────
     desktop.plasma.enable = true;
+    desktop.qylock.enable = true; # SDDM login theme + Quickshell lockscreen
 
     gaming = {
       enable = true;

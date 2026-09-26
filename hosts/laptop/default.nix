@@ -16,7 +16,7 @@
       defaultLocale = "en_US.UTF-8";
       keyboard.layout = "us,ru";
     };
-    nix.flakePath = "~/nixos-cfg";
+    nix.flakePath = "/nixos-cfg";
 
     # ── Hardware ──────────────────────────────────────────────────────
     hardware = {
@@ -47,6 +47,7 @@
 
     # ── Desktop & workloads ───────────────────────────────────────────
     desktop.plasma.enable = true;
+    desktop.qylock.enable = true; # SDDM login theme + Quickshell lockscreen
     desktop.inir.enable = true; # iNiR / Niri shell (modules/{nixos,home}/inir.nix)
 
     gaming = {

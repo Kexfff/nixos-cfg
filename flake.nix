@@ -33,6 +33,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    qylock.url = "github:Darkkal44/qylock";
+
     # Extra community packages (ab-download-manager, thorium, …).
     custom-packages.url = "github:Rishabh5321/custom-packages-flake";
 
