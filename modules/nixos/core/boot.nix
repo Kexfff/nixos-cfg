@@ -82,7 +82,7 @@ in
           maxGenerations = cfg.limine.maxGenerations;
           secureBoot.enable = cfg.limine.secureBoot;
           # Cosmetics (optional):
-          # style.wallpapers = [ pkgs.nixos-artwork.wallpapers.simple-dark-gray-bootloader.gnomeFilePath ];
+          style.wallpapers = [ ../../../assets/limine/limine_wallpaper.jpg ];
           # extraConfig = ''
           #   interface_branding: NixOS
           # '';
