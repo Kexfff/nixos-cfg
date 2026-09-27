@@ -44,10 +44,11 @@ in
     };
     initialPassword = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
-      default = "changeme";
+      default = null;
       description = ''
         Only used the first time the account is created (existing users keep their
-        password). Change it right away with `passwd`, or use hashedPasswordFile.
+        password). Null leaves password provisioning to the existing system or
+        installer; use hashedPasswordFile for declarative provisioning.
       '';
     };
     hashedPasswordFile = lib.mkOption {

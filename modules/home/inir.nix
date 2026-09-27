@@ -19,6 +19,9 @@
   imports = [ inputs.inir.homeManagerModules.inir ];
 
   config = lib.mkIf osConfig.my.desktop.inir.enable {
+    home.pointerCursor = lib.mkDefault {
+      enable = true;
+    };
     programs.inir = {
       enable = true;
 

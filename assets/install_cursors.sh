@@ -10,6 +10,8 @@ if [[ ! -d "$SOURCE_DIR" ]]; then
   exit 1
 fi
 
+echo "WARNING: Existing theme directories in $TARGET_DIR with matching names will be permanently deleted and replaced with symlinks. Back up custom themes before running this script." >&2
+
 mkdir -p "$TARGET_DIR"
 
 shopt -s nullglob
