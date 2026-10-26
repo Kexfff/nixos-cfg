@@ -34,6 +34,10 @@
     # Extra community packages (ab-download-manager, thorium, …).
     custom-packages.url = "github:Rishabh5321/custom-packages-flake";
 
+    # AI agents and desktop apps (claude-desktop, chatgpt, opencode2-desktop, …).
+    # No `nixpkgs.follows`: like chaotic, it would miss numtide's binary cache.
+    llm-agents.url = "github:numtide/llm-agents.nix";
+
     # Declarative Flatpaks (services.flatpak.packages = [ ... ]).
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
   };

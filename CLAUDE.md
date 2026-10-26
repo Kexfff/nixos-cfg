@@ -37,7 +37,7 @@ The design is intentionally flat. **Don't reintroduce a custom option layer** (`
 
 ## Constraints and gotchas
 
-- **Never add `inputs.nixpkgs.follows` to `chaotic`.** It invalidates the binary cache, and the CachyOS kernel would then compile locally.
+- **Never add `inputs.nixpkgs.follows` to `chaotic` or `llm-agents`.** It invalidates their binary caches: the CachyOS kernel would compile locally, and llm-agents packages would miss `cache.numtide.com`.
 - `hardware-configuration.nix` files are generated per machine. Don't hand-edit them. `core/btrfs.nix` adds `compress=zstd,noatime` to `/`, `/home` and `/nix`, so every host must declare those mounts.
 - Don't change `system.stateVersion` (HM's `home.stateVersion` follows it).
 - `nvidia.nix` uses `pkgs.nvidia_cachyos`, which only matches a CachyOS kernel. Out-of-tree modules (xone, xpadneo) may need `pkgs.linuxPackages_cachyos-gcc`.

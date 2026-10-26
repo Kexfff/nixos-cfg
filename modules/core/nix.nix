@@ -45,9 +45,13 @@
       connect-timeout = 5;
       log-lines = 50;
       # chaotic-nyx registers its own cache via its module (core/boot.nix)
-      substituters = [ "https://nix-community.cachix.org" ];
+      substituters = [
+        "https://nix-community.cachix.org"
+        "https://cache.numtide.com" # llm-agents
+      ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
       ];
     };
 

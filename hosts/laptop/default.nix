@@ -39,7 +39,7 @@
   # services.fprintd.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # laptop-only apps
+    qemu # Claude Desktop's Cowork VM (the desktop gets it from libvirt.nix)
   ];
 
   # The release this machine was first installed with. Never bump it blindly.

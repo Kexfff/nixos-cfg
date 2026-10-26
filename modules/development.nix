@@ -88,7 +88,6 @@
 
       home.packages = with pkgs; [
         devenv # batteries-included dev environments (devenv.sh)
-        codex
       ];
 
       # Minimal flake template for new projects:  nix flake init -t ~/.config/nix-templates#basic

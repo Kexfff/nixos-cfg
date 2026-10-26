@@ -8,6 +8,9 @@
   osConfig,
   ...
 }:
+let
+  agents = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   imports = [
     ./shell.nix
@@ -27,6 +30,11 @@
     mpv
     #keepassxc
     inputs.custom-packages.packages.${pkgs.stdenv.hostPlatform.system}.ab-download-manager
+
+    # AI desktop apps (llm-agents flake)
+    agents.claude-desktop # Cowork needs qemu on the host (libvirt.nix / laptop host)
+    agents.chatgpt
+    agents.opencode2-desktop
 
     tealdeer # `tldr <cmd>`
     glow # markdown in the terminal
