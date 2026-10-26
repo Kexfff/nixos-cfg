@@ -11,8 +11,7 @@
     ../../modules/hardware/nvidia.nix
 
     ../../modules/desktop/plasma.nix
-    ../../modules/desktop/qylock.nix
-    # ../../modules/desktop/dm-shell.nix # niri + DM-Shell + DM Manager
+    # ../../modules/desktop/dm-desktop.nix # niri + DM-Shell + DM Manager
 
     ../../modules/gaming.nix
     ../../modules/development.nix

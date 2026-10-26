@@ -1,5 +1,5 @@
 {
-  description = "NixOS — Lix · Limine · Btrfs · CachyOS kernel · KDE Plasma 6 · Home Manager";
+  description = "NixOS — Lix · Limine · Btrfs · CachyOS kernel · KDE Plasma 6 · niri + DM-Shell · Home Manager";
 
   inputs = {
     # Rolling release. Swap for "github:NixOS/nixpkgs/nixos-25.11" if you want stable.
@@ -28,7 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # DM-Shell (dmsh) and DM Manager on niri.
+    # The niri desktop: DM-Shell (dmsh), DM Manager, and dm-desktop's configs.
     dmsh = {
       url = "github:Kexfff/DM-Shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,9 +37,10 @@
       url = "github:Kexfff/dm-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # SDDM login themes + Quickshell lockscreen.
-    qylock.url = "github:Darkkal44/qylock";
+    dm-desktop = {
+      url = "github:Kexfff/dm-desktop";
+      flake = false; # just config files
+    };
 
     # Extra community packages (ab-download-manager, thorium, …).
     custom-packages.url = "github:Rishabh5321/custom-packages-flake";
