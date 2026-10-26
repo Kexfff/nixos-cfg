@@ -28,6 +28,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # DM-Shell (dmsh) and DM Manager on niri.
+    dmsh = {
+      url = "github:Kexfff/DM-Shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dm-manager = {
+      url = "github:Kexfff/dm-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # SDDM login themes + Quickshell lockscreen.
     qylock.url = "github:Darkkal44/qylock";
 

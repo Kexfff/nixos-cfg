@@ -1,5 +1,4 @@
 # NetworkManager, firewall, DNS, mDNS, firmware.
-{ ... }:
 {
   networking = {
     networkmanager.enable = true;

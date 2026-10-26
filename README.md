@@ -11,6 +11,7 @@ look up on [search.nixos.org](https://search.nixos.org/options).
 | Filesystem     | **Btrfs** (zstd, noatime, monthly scrub) — *no* snapshot tooling          |
 | Kernel         | **CachyOS** (chaotic-nyx, binary cached) + `sched_ext`                    |
 | Desktop        | **KDE Plasma 6** on Wayland, SDDM + qylock theme, plasma-manager          |
+| Second session | **niri** + [DM-Shell](https://github.com/Kexfff/DM-Shell) + [DM Manager](https://github.com/Kexfff/dm-manager) (laptop) |
 | Users          | **Home Manager** as a NixOS module                                        |
 | GC             | `nh clean all` weekly (keeps 5 generations / 7 days) + store optimisation |
 | Hosts          | `desktop` (AMD CPU + NVIDIA) · `laptop` (Intel CPU + iGPU)                |
@@ -22,7 +23,7 @@ flake.nix               inputs + the two hosts
 hosts/<name>/           which modules this machine imports + machine-only settings
 modules/core/           always imported: nix, boot, btrfs, performance, locale, audio, …
 modules/hardware/       amd-cpu, intel-cpu, nvidia, intel-gpu, laptop
-modules/desktop/        plasma, qylock
+modules/desktop/        plasma, qylock, dm-shell (niri + dmsh + DM Manager)
 modules/*.nix           gaming, development, docker, podman, libvirt, printing, flatpak, ssh, tailscale
 users/kexfff/           the account (default.nix) + Home Manager (home.nix, shell, git, editors, fastfetch)
 pkgs/                   custom packages → pkgs.<name>

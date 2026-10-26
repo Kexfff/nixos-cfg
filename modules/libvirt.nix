@@ -1,15 +1,12 @@
 # VMs: libvirt + QEMU/KVM + virt-manager.
-{ pkgs, username, ... }:
+{ username, ... }:
 {
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
       runAsRoot = false;
       swtpm.enable = true; # TPM for Windows 11 guests
-      ovmf = {
-        enable = true;
-        packages = [ pkgs.OVMFFull.fd ];
-      };
+      # UEFI (OVMF) firmware images ship with QEMU and are available by default
     };
   };
   virtualisation.spiceUSBRedirection.enable = true;
