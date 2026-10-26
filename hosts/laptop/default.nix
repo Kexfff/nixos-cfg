@@ -1,88 +1,33 @@
 # ── Laptop: Intel CPU + Intel iGPU ────────────────────────────────────────────
+# A host = the modules it imports + a few machine-specific settings.
+# Importing a module turns it on; comment a line out to turn it off.
 { pkgs, ... }:
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/core
 
-  my = {
-    # ── Identity ─────────────────────────────────────────── CHANGEME ──
-    user = {
-      name = "kexfff"; # also rename users/user/ to match
-      fullName = "Aleksei";
-      email = "llexxass@gmail.com";
-      shell = "fish";
-    };
-    locale = {
-      timeZone = "Europe/Moscow";
-      defaultLocale = "en_US.UTF-8";
-      keyboard.layout = "us,ru";
-    };
-    nix.flakePath = "/home/kexfff/nixos-cfg";
+    ../../modules/hardware/intel-cpu.nix
+    ../../modules/hardware/intel-gpu.nix
+    ../../modules/hardware/laptop.nix
 
-    # ── Hardware ──────────────────────────────────────────────────────
-    hardware = {
-      cpu = "intel";
-      gpu = "intel";
-      laptop = {
-        enable = true;
-        powerBackend = "power-profiles-daemon"; # or "tlp" (+ batteryThreshold = 80)
-        # Its suspend callback returns -EINVAL, which aborts suspend and leaves
-        # the screen on. Blacklisted until the kernel driver is fixed.
-        blacklistedKernelModules = [ "bitland_mifs_wmi" ];
-      };
-      bluetooth.enable = true;
-    };
+    ../../modules/desktop/plasma.nix
+    ../../modules/desktop/qylock.nix
 
-    # ── Boot ──────────────────────────────────────────────────────────
-    boot = {
-      kernel = "cachyos";
-      scx.scheduler = "scx_bpfland"; # interactive workloads, gentle on battery
-    };
+    ../../modules/gaming.nix
+    ../../modules/development.nix
+    ../../modules/podman.nix # rootless, no daemon → kinder to the battery
+    ../../modules/printing.nix
+    ../../modules/flatpak.nix
+    ../../modules/tailscale.nix
+  ];
 
-    # ── Storage ──
-    filesystem.btrfs.mountpoints = [
-      "/"
-      "/home"
-      "/nix"
-    ];
+  # sched_ext scheduler for interactive workloads, gentle on battery
+  services.scx.scheduler = "scx_bpfland";
 
-    # ── Desktop & workloads ───────────────────────────────────────────
-    desktop.plasma.enable = true;
-    desktop.qylock.enable = true; # SDDM login theme + Quickshell lockscreen
-    desktop.inir.enable = true; # iNiR / Niri shell (modules/{nixos,home}/inir.nix)
-
-    gaming = {
-      enable = true;
-      launchers = with pkgs; [
-        heroic
-        prismlauncher
-      ]; # lighter set than the desktop
-    };
-
-    development = {
-      enable = true;
-      languages = [
-        "python"
-        "node"
-        "rust"
-        "go"
-      ];
-      editors = [
-        "vscode"
-        "zed"
-      ];
-    };
-
-    virtualisation = {
-      podman.enable = true; # rootless, no daemon → kinder to the battery
-      distrobox.enable = true;
-    };
-
-    services = {
-      printing.enable = true;
-      flatpak.enable = true;
-      tailscale.enable = true;
-    };
-  };
+  # This vendor WMI driver's suspend callback returns -EINVAL, which aborts
+  # suspend and leaves the screen on. Blacklisted until the kernel driver is fixed.
+  boot.blacklistedKernelModules = [ "bitland_mifs_wmi" ];
 
   # Proxy client. TUN mode needs the capability/polkit wrapper this module sets up.
   programs.throne = {
@@ -93,6 +38,10 @@
   # Fingerprint reader — check support first with `fprintd-enroll`
   # services.fprintd.enable = true;
 
-  # CHANGEME: copy from your current /etc/nixos/configuration.nix
+  environment.systemPackages = with pkgs; [
+    # laptop-only apps
+  ];
+
+  # The release this machine was first installed with. Never bump it blindly.
   system.stateVersion = "26.05";
 }

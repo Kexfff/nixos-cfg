@@ -1,5 +1,5 @@
 {
-  description = "Modular NixOS — Lix · Limine · Btrfs · CachyOS kernel · KDE Plasma 6 · Home Manager";
+  description = "NixOS — Lix · Limine · Btrfs · CachyOS kernel · KDE Plasma 6 · Home Manager";
 
   inputs = {
     # Rolling release. Swap for "github:NixOS/nixpkgs/nixos-25.11" if you want stable.
@@ -28,11 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    inir = {
-      url = "github:Kexfff/iNiR-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+    # SDDM login themes + Quickshell lockscreen.
     qylock.url = "github:Darkkal44/qylock";
 
     # Extra community packages (ab-download-manager, thorium, …).
@@ -43,56 +39,52 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    { nixpkgs, ... }@inputs:
     let
-      inherit (self) outputs;
-      systems = [ "x86_64-linux" ];
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-      mylib = import ./lib {
-        inherit inputs outputs;
-        inherit (nixpkgs) lib;
-      };
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      username = "kexfff";
+
+      # A host = hosts/<hostname>/ + the user from users/<username>/.
+      # `inputs` and `username` are available as arguments in every module.
+      mkHost =
+        hostname:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs username; };
+          modules = [
+            ./hosts/${hostname}
+            ./users/${username}
+            { networking.hostName = hostname; }
+          ];
+        };
     in
     {
-      # ── Hosts ──────────────────────────────────────────────────────────────
-      #   sudo nixos-rebuild switch --flake .#desktop     (or simply: nh os switch)
+      #   nh os switch                                  (on the machine itself)
       #   sudo nixos-rebuild switch --flake .#laptop
-      # Adding a machine = new hosts/<name>/ directory + one line here.
       nixosConfigurations = {
-        desktop = mylib.mkHost { hostname = "desktop"; };
-        laptop = mylib.mkHost { hostname = "laptop"; };
+        desktop = mkHost "desktop";
+        laptop = mkHost "laptop";
       };
 
-      # ── Reusable pieces (importable from other flakes) ─────────────────────
-      nixosModules.default = import ./modules/nixos;
-      homeModules.default = import ./modules/home;
-      overlays = import ./overlays { inherit inputs; };
-      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+      # Custom packages from ./pkgs (also available as pkgs.<name> on the system)
+      packages.${system} = import ./pkgs pkgs;
 
       # `nix fmt` formats the whole repository (RFC 166 style)
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
+      formatter.${system} = pkgs.nixfmt;
 
       # `nix develop` (or direnv via .envrc): tooling for hacking on this config
-      devShells = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        {
-          default = pkgs.mkShell {
-            name = "nixos-config";
-            packages = with pkgs; [
-              git
-              nh
-              nix-output-monitor
-              nvd
-              nixd
-              nixfmt
-              statix
-              deadnix
-            ];
-          };
-        }
-      );
+      devShells.${system}.default = pkgs.mkShell {
+        name = "nixos-config";
+        packages = with pkgs; [
+          git
+          nh
+          nix-output-monitor
+          nvd
+          nixd
+          nixfmt
+          statix
+          deadnix
+        ];
+      };
     };
 }

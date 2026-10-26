@@ -28,7 +28,7 @@
   boot.extraModulePackages = [ ];
 
   # Typical flat-subvolume Btrfs layout. compress=zstd / noatime are added by
-  # modules/nixos/core/filesystem.nix, so they need not be here.
+  # modules/core/btrfs.nix, so they need not be here.
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/CHANGE-ME";
     fsType = "btrfs";

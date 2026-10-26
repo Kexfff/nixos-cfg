@@ -1,28 +1,43 @@
-# Per-user Home Manager settings for the user "user".
-#
-# Rename this directory to match `my.user.name` in your host file — it is imported
-# automatically when it exists. Anything personal goes here (extra apps, dotfiles,
-# SSH hosts); everything shared lives in modules/home/.
-{ pkgs, inputs, ... }:
+# The user account (NixOS side) + Home Manager wiring. Imported on every host by flake.nix.
+# Your Home Manager config starts at ./home.nix.
 {
-  home.packages = with pkgs; [
-    # CHANGEME — your personal apps
-    #keepassxc
-    obsidian
-    # mpv is provided by the iNiR runtime set (with mpv-mpris); adding
-    # pkgs.mpv here would conflict in home-manager-path's buildEnv.
-    floorp-bin
-    telegram-desktop
-    qbittorrent
-    libreoffice
-    mission-center
-    vlc
-    inputs.custom-packages.packages.${pkgs.stdenv.hostPlatform.system}.ab-download-manager
-  ];
+  pkgs,
+  inputs,
+  username,
+  ...
+}:
+{
+  imports = [ inputs.home-manager.nixosModules.home-manager ];
 
-  # Example: extra git config only for you
-  # programs.git.settings.github.user = "your-github-handle";
+  users.mutableUsers = true; # `passwd` keeps working
 
-  # Example: dotfile you don't want to translate to Nix (yet)
-  # home.file.".config/foo/foo.conf".source = ./foo.conf;
+  users.users.${username} = {
+    isNormalUser = true;
+    description = "Aleksei";
+    shell = pkgs.fish;
+    # Feature modules add their own groups (docker, libvirtd, scanner, …)
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "audio"
+      "input"
+      "render"
+    ];
+    # Declarative password: hashedPasswordFile = "/run/secrets/…";  (mkpasswd -m yescrypt)
+    # SSH keys allowed to log in (with modules/ssh.nix):
+    openssh.authorizedKeys.keys = [ ];
+  };
+
+  # The login shell must be enabled system-wide (adds it to /etc/shells)
+  programs.fish.enable = true;
+
+  home-manager = {
+    useGlobalPkgs = true; # same nixpkgs + overlays as the system
+    useUserPackages = true;
+    backupFileExtension = "hm-bak"; # never fail on pre-existing dotfiles
+    overwriteBackup = true; # and never fail on an existing .hm-bak either
+    extraSpecialArgs = { inherit inputs; };
+    users.${username} = ./home.nix;
+  };
 }

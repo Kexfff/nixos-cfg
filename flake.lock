@@ -128,43 +128,6 @@
         "type": "github"
       }
     },
-    "inir": {
-      "inputs": {
-        "inir-src": "inir-src",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1790273944,
-        "narHash": "sha256-47D+DPkE1FQdrd5GBgfLHt5BmSGzlmzYliZvDAnaO7Q=",
-        "owner": "Kexfff",
-        "repo": "iNiR-flake",
-        "rev": "a4848b4def9e323c796fc62d9e03ce2e7452b91e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Kexfff",
-        "repo": "iNiR-flake",
-        "type": "github"
-      }
-    },
-    "inir-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1789849958,
-        "narHash": "sha256-Zu4FrR/vn+Pq81hLkR5n3XXt+ja7m0my6ml+4IJotn4=",
-        "owner": "snowarch",
-        "repo": "iNiR",
-        "rev": "9574fa424c0d1008e927454e933a7fbe292f9fb2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "snowarch",
-        "repo": "iNiR",
-        "type": "github"
-      }
-    },
     "nix-flatpak": {
       "locked": {
         "lastModified": 1767983141,
@@ -310,7 +273,6 @@
         "chaotic": "chaotic",
         "custom-packages": "custom-packages",
         "home-manager": "home-manager_2",
-        "inir": "inir",
         "nix-flatpak": "nix-flatpak",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_3",

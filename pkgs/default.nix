@@ -1,7 +1,8 @@
-# Custom packages. Exposed as `pkgs.<name>` through overlays/default.nix and as
-# `nix build .#<name>`. Scaffold new ones with `nix-init` / `nurl`.
+# Custom packages. Available as `pkgs.<name>` on every host (overlay in
+# modules/core/nix.nix) and as `nix build .#<name>`.
+# Scaffold new ones with `nix-init` / `nurl`.
 pkgs: {
-  # Tiny example: `nixos-gens` prints boot generations + store size
+  # `nixos-gens` prints boot generations + store size
   nixos-gens = pkgs.writeShellApplication {
     name = "nixos-gens";
     runtimeInputs = [
