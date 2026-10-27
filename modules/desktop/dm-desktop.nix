@@ -86,7 +86,6 @@ in
         xdg.configFile = {
           "niri/config.kdl".source = link "niri/config.kdl";
           "niri/dm-desktop".source = link "niri/dm-desktop";
-          "niri/local.kdl".source = link "niri/local.kdl";
           "niri/dmsh.kdl".source = dmshKdl;
           "hypr/hyprlock.conf".source = link "hypr/hyprlock.conf";
           "swayidle/lock".source = link "swayidle/lock";
@@ -107,6 +106,7 @@ in
           }
           seed ${../../dotfiles/dmsh/config.kdl} "$HOME/.config/dmsh/config.kdl"
           seed ${../../dotfiles/swayidle/config} "$HOME/.config/swayidle/config"
+          seed ${../../dotfiles/niri/local.kdl} "$HOME/.config/niri/local.kdl"
         '';
       }
     )

@@ -3,7 +3,6 @@
 {
   environment.systemPackages = with pkgs; [
     # basics
-    vim
     git
     curl
     wget

@@ -34,13 +34,11 @@
     };
 
     # systemd in stage 1: faster, and required for a good Plymouth experience
-    initrd.systemd.enable = true;
     tmp.cleanOnBoot = true;
 
     # Graphical splash + quiet kernel output
     plymouth.enable = true;
     consoleLogLevel = 3;
-    initrd.verbose = false;
     kernelParams = [
       "quiet"
       "splash"
