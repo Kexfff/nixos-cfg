@@ -28,7 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # The niri desktop: DM-Shell (dmsh), DM Manager, and dm-desktop's configs.
+    # The niri desktop: DM-Shell (dmsh) and DM Manager. Their configs are in dotfiles/.
     dmsh = {
       url = "github:Kexfff/DM-Shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,10 +36,6 @@
     dm-manager = {
       url = "github:Kexfff/dm-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    dm-desktop = {
-      url = "github:Kexfff/dm-desktop";
-      flake = false; # just config files
     };
 
     # Extra community packages (ab-download-manager, thorium, …).

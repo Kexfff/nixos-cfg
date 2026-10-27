@@ -11,7 +11,7 @@ look up on [search.nixos.org](https://search.nixos.org/options).
 | Filesystem     | **Btrfs** (zstd, noatime, monthly scrub) — *no* snapshot tooling          |
 | Kernel         | **CachyOS** (chaotic-nyx, binary cached) + `sched_ext`                    |
 | Desktop        | **KDE Plasma 6** on Wayland, SDDM, plasma-manager                         |
-| Second session | **niri** + [DM-Shell](https://github.com/Kexfff/DM-Shell) + [DM Manager](https://github.com/Kexfff/dm-manager) with the [dm-desktop](https://github.com/Kexfff/dm-desktop) configs, hyprlock (laptop) |
+| Second session | **niri** + [DM-Shell](https://github.com/Kexfff/DM-Shell) + [DM Manager](https://github.com/Kexfff/dm-manager), walker, hyprlock (laptop) |
 | Users          | **Home Manager** as a NixOS module                                        |
 | GC             | `nh clean all` weekly (keeps 5 generations / 7 days) + store optimisation |
 | Hosts          | `desktop` (AMD CPU + NVIDIA) · `laptop` (Intel CPU + iGPU)                |
@@ -23,8 +23,9 @@ flake.nix               inputs + the two hosts
 hosts/<name>/           which modules this machine imports + machine-only settings
 modules/core/           always imported: nix, boot, btrfs, performance, locale, audio, …
 modules/hardware/       amd-cpu, intel-cpu, nvidia, intel-gpu, laptop
-modules/desktop/        plasma, dm-desktop (niri + dmsh + DM Manager + dm-desktop configs)
+modules/desktop/        plasma, dm-desktop (niri + dmsh + DM Manager)
 modules/*.nix           gaming, development, docker, podman, libvirt, printing, flatpak, ssh, tailscale
+dotfiles/               niri, dmsh, hyprlock, swayidle, walker configs (linked live into ~/.config)
 users/kexfff/           the account (default.nix) + Home Manager (home.nix, shell, git, editors, fastfetch)
 pkgs/                   custom packages → pkgs.<name>
 assets/                 wallpaper, fastfetch logo, cursor themes
@@ -40,7 +41,7 @@ assets/                 wallpaper, fastfetch logo, cursor themes
 | turn a feature on/off for a machine | add/remove its line in `imports` of `hosts/<name>/default.nix` |
 | change a feature everywhere        | the feature's file in `modules/`                            |
 | add a new feature                  | new `modules/<thing>.nix`, then import it in the hosts      |
-| change the niri desktop's configs  | the [dm-desktop](https://github.com/Kexfff/dm-desktop) repo, then `nix flake update dm-desktop` |
+| change the niri desktop's configs  | `dotfiles/`: applies on save, no rebuild (niri reloads itself) |
 
 Shared modules set things hosts commonly change with `lib.mkDefault` (kernel,
 sched_ext scheduler, nh flake path, NVIDIA open modules), so a host overrides them

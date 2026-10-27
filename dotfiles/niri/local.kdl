@@ -1,0 +1,6 @@
+// Settings for my laptop (this repo is a personal setup). Included last by config.kdl,
+// so binds here replace the ones above and sections are merged in.
+
+output "eDP-1" {
+    variable-refresh-rate
+}

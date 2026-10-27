@@ -73,22 +73,6 @@
         "type": "github"
       }
     },
-    "dm-desktop": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1792241796,
-        "narHash": "sha256-LSwFkAdjtRZJOgbSVMKM92V5/aK5qHNp5pdKdn05MKE=",
-        "owner": "Kexfff",
-        "repo": "dm-desktop",
-        "rev": "1fae330bbd6ab82e16d477b408f06ad19bee99ef",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Kexfff",
-        "repo": "dm-desktop",
-        "type": "github"
-      }
-    },
     "dm-manager": {
       "inputs": {
         "nixpkgs": [
@@ -351,7 +335,6 @@
       "inputs": {
         "chaotic": "chaotic",
         "custom-packages": "custom-packages",
-        "dm-desktop": "dm-desktop",
         "dm-manager": "dm-manager",
         "dmsh": "dmsh",
         "home-manager": "home-manager_2",
