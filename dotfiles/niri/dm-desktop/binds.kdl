@@ -3,9 +3,6 @@
 // Docs: https://niri-wm.github.io/niri/Configuration:-Key-Bindings
 
 binds {
-    // --- Apps
-    Mod+E hotkey-overlay-title="Files" { spawn "dolphin"; }
-    Mod+W hotkey-overlay-title="Browser" { spawn "floorp"; }
 
     // --- Session -------------------------------------------------------------------
     Mod+Slash { show-hotkey-overlay; }

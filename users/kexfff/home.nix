@@ -21,14 +21,12 @@ in
 
   home.packages = with pkgs; [
     obsidian
-    floorp-bin
     telegram-desktop
     qbittorrent
     libreoffice
     mission-center
     vlc
     mpv
-    #keepassxc
     inputs.custom-packages.packages.${pkgs.stdenv.hostPlatform.system}.ab-download-manager
 
     # AI desktop apps (llm-agents flake)
