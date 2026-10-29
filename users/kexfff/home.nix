@@ -36,7 +36,7 @@ in
 
     tealdeer # `tldr <cmd>`
     glow # markdown in the terminal
-    yazi # terminal file manager
+    #yazi # terminal file manager
   ];
 
   # Dotfile you don't want to translate to Nix (yet):
