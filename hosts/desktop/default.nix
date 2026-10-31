@@ -4,18 +4,18 @@
 { pkgs, ... }:
 {
   imports = [
-    ./hardware-configuration.nix # placeholder: generate the real one on this machine
+    ./hardware-configuration.nix
     ../../modules/core
 
     ../../modules/hardware/amd-cpu.nix
     ../../modules/hardware/nvidia.nix
 
     ../../modules/desktop/plasma.nix
-    # ../../modules/desktop/dm-desktop.nix # niri + DM-Shell + DM Manager
+    ../../modules/desktop/dm-desktop.nix # niri + DM-Shell + DM Manager
 
     ../../modules/gaming.nix
     ../../modules/development.nix
-    ../../modules/docker.nix
+    ../../modules/podman.nix
     ../../modules/libvirt.nix
     ../../modules/printing.nix
     ../../modules/flatpak.nix
@@ -36,5 +36,5 @@
 
   # CHANGEME: the release this machine is first installed with (see
   # /etc/nixos/configuration.nix after installing). Never bump it blindly.
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 }

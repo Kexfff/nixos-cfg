@@ -20,7 +20,7 @@ in
   ];
 
   home.packages = with pkgs; [
-    obsidian
+    #obsidian
     telegram-desktop
     qbittorrent
     libreoffice
@@ -30,7 +30,7 @@ in
     inputs.custom-packages.packages.${pkgs.stdenv.hostPlatform.system}.ab-download-manager
 
     # AI desktop apps (llm-agents flake)
-    agents.claude-desktop # Cowork needs qemu on the host (libvirt.nix / laptop host)
+    #agents.claude-desktop # Cowork needs qemu on the host (libvirt.nix / laptop host)
     agents.chatgpt
     agents.opencode2-desktop
 
