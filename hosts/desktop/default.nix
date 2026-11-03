@@ -29,6 +29,11 @@
   # Zen 4 / Zen 5: CPU-tuned kernel build
   # boot.kernelPackages = pkgs.linuxPackages_cachyos-lto-znver4;
 
+  programs.throne = {
+    enable = true;
+    tunMode.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
     # openrgb
   ];

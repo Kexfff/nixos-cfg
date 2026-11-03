@@ -3,7 +3,7 @@
 #
 # Global toolchains are for scratch work. For real projects use a flake with a
 # devShell + `.envrc` ("use flake") — direnv loads it automatically.
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   environment.systemPackages = with pkgs; [
     # general
@@ -60,6 +60,7 @@
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
+      config.hardware.nvidia.package
       stdenv.cc.cc.lib
       zlib
       openssl
