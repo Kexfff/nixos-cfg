@@ -39,6 +39,11 @@
   ];
   # services.hardware.openrgb.enable = true;
 
+  environment.etc.certfile = {
+    source = "/etc/ssl/certs/ca-bundle.crt";
+    target = "ssl/cert.pem";
+  };
+
   # CHANGEME: the release this machine is first installed with (see
   # /etc/nixos/configuration.nix after installing). Never bump it blindly.
   system.stateVersion = "26.05";

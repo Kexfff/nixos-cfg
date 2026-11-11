@@ -49,12 +49,4 @@
     ];
   };
 
-  # sched_ext: CachyOS-style user-space CPU scheduling. Check: systemctl status scx
-  #   scx_lavd    — latency-first; what CachyOS ships for gaming
-  #   scx_bpfland — interactive desktop workloads, gentle on battery
-  #   scx_rusty   — general purpose / many-core
-  services.scx = {
-    enable = true;
-    scheduler = lib.mkDefault "scx_lavd";
-  };
 }
